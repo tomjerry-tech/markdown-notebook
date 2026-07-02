@@ -2,7 +2,10 @@ import { useMemo, useState } from 'react'
 import { MarkdownPreview } from './components/MarkdownPreview'
 import { NoteEditor } from './components/NoteEditor'
 import { NoteList } from './components/NoteList'
+import { useLocalStorage } from './hooks/useLocalStorage'
 import type { Note } from './types/note'
+
+const STORAGE_KEY = 'markdown-notes'
 
 const initialNotes: Note[] = [
   {
@@ -35,8 +38,8 @@ function createEmptyNote(): Note {
 }
 
 function App() {
-  const [notes, setNotes] = useState<Note[]>(initialNotes)
-  const [selectedNoteId, setSelectedNoteId] = useState(initialNotes[0].id)
+  const [notes, setNotes] = useLocalStorage<Note[]>(STORAGE_KEY, initialNotes)
+  const [selectedNoteId, setSelectedNoteId] = useState(notes[0]?.id)
 
   const selectedNote = useMemo(
     () => notes.find((note) => note.id === selectedNoteId) ?? notes[0],
@@ -50,6 +53,20 @@ function App() {
     setSelectedNoteId(newNote.id)
   }
 
+  function handleUpdateNote(noteId: string, updates: Pick<Note, 'title' | 'content'>) {
+    setNotes((currentNotes) =>
+      currentNotes.map((note) =>
+        note.id === noteId
+          ? {
+              ...note,
+              ...updates,
+              updatedAt: new Date().toISOString(),
+            }
+          : note,
+      ),
+    )
+  }
+
   return (
     <main className="min-h-dvh bg-[#f6f7f4] text-slate-950">
       <div className="mx-auto grid min-h-dvh max-w-7xl grid-cols-1 gap-0 border-x border-slate-200 bg-white lg:grid-cols-[360px_minmax(0,1fr)]">
@@ -61,7 +78,7 @@ function App() {
             selectedNoteId={selectedNote?.id}
           />
           {selectedNote ? (
-            <NoteEditor key={selectedNote.id} note={selectedNote} />
+            <NoteEditor note={selectedNote} onUpdateNote={handleUpdateNote} />
           ) : (
             <div className="p-5 text-sm text-slate-500">还没有可编辑的笔记。</div>
           )}
