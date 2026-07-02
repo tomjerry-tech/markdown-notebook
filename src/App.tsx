@@ -12,7 +12,7 @@ const initialNotes: Note[] = [
     id: 'note-1',
     title: '项目开发计划',
     content:
-      '# Markdown 笔记应用\n\n这是一个用于练习 React、TypeScript、Markdown 和 Git 的笔记项目。\n\n```ts\nconst app = "Markdown Notebook";\n```',
+      '# Markdown 笔记应用\n\n这是一个用于练习 React、TypeScript、Markdown 和 Git 的笔记项目。\n\n- 支持创建笔记\n- 支持实时编辑\n- 支持 Markdown 预览\n\n> 第五步会把这段内容渲染成真正的 Markdown。\n\n```ts\nconst app = "Markdown Notebook";\n```',
     createdAt: '2026-07-02T12:00:00.000Z',
     updatedAt: '2026-07-02T12:30:00.000Z',
   },
