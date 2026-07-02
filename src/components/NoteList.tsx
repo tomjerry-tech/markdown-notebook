@@ -29,7 +29,7 @@ export function NoteList({
   const isSearching = searchQuery.trim().length > 0
 
   return (
-    <section className="border-b border-slate-200 p-5">
+    <section className="border-b border-slate-200 p-4 sm:p-5">
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-xs font-semibold uppercase text-cyan-700">
@@ -40,7 +40,7 @@ export function NoteList({
         </div>
 
         <button
-          className="min-h-11 rounded-md bg-slate-950 px-4 text-sm font-medium text-white transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2"
+          className="min-h-11 rounded-md bg-slate-950 px-4 text-sm font-medium text-white transition hover:bg-slate-800 active:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2"
           onClick={onCreateNote}
           type="button"
         >
@@ -52,7 +52,7 @@ export function NoteList({
         搜索笔记
       </label>
       <input
-        className="mt-2 h-11 w-full rounded-md border border-slate-300 bg-white px-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-100"
+        className="mt-2 h-11 w-full rounded-md border border-slate-300 bg-white px-3 text-sm outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-100"
         id="note-search"
         onChange={(event) => onSearchQueryChange(event.target.value)}
         placeholder="输入标题或内容关键词"
@@ -60,7 +60,7 @@ export function NoteList({
         value={searchQuery}
       />
 
-      <div className="mt-5 space-y-2" aria-label="笔记列表">
+      <div className="mt-5 max-h-72 space-y-2 overflow-y-auto pr-1 lg:max-h-[32dvh]" aria-label="笔记列表">
         {notes.map((note) => {
           const isSelected = note.id === selectedNoteId
 
@@ -70,15 +70,22 @@ export function NoteList({
               className={[
                 'w-full rounded-md border p-3 text-left transition focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2',
                 isSelected
-                  ? 'border-cyan-600 bg-cyan-50'
-                  : 'border-slate-200 bg-white hover:border-slate-300',
+                  ? 'border-cyan-600 bg-cyan-50 shadow-sm ring-1 ring-cyan-200'
+                  : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50',
               ].join(' ')}
               key={note.id}
               onClick={() => onSelectNote(note.id)}
               type="button"
             >
-              <span className="block truncate text-sm font-semibold text-slate-950">
-                {note.title || '未命名笔记'}
+              <span className="flex items-center justify-between gap-3">
+                <span className="block truncate text-sm font-semibold text-slate-950">
+                  {note.title || '未命名笔记'}
+                </span>
+                {isSelected ? (
+                  <span className="rounded bg-cyan-600 px-2 py-0.5 text-[11px] font-medium text-white">
+                    当前
+                  </span>
+                ) : null}
               </span>
               <span className="mt-1 block truncate text-xs text-slate-500">
                 {note.content || '空白笔记'}

@@ -107,9 +107,9 @@ function App() {
   }
 
   return (
-    <main className="min-h-dvh bg-[#f6f7f4] text-slate-950">
-      <div className="mx-auto grid min-h-dvh max-w-7xl grid-cols-1 gap-0 border-x border-slate-200 bg-white lg:grid-cols-[360px_minmax(0,1fr)]">
-        <aside className="flex min-h-dvh flex-col border-b border-slate-200 bg-slate-50 lg:border-b-0 lg:border-r">
+    <main className="min-h-dvh bg-[#f3f5f7] text-slate-950">
+      <div className="mx-auto grid min-h-dvh max-w-[1440px] grid-cols-1 bg-white shadow-sm lg:grid-cols-[400px_minmax(0,1fr)]">
+        <aside className="flex min-h-[55dvh] flex-col border-b border-slate-200 bg-slate-50/95 lg:min-h-dvh lg:border-b-0 lg:border-r">
           <NoteList
             notes={filteredNotes}
             onCreateNote={handleCreateNote}
@@ -126,15 +126,19 @@ function App() {
               onUpdateNote={handleUpdateNote}
             />
           ) : (
-            <div className="p-5 text-sm text-slate-500">还没有可编辑的笔记。</div>
+            <div className="m-5 rounded-md border border-dashed border-slate-300 bg-white p-5 text-sm text-slate-500">
+              还没有可编辑的笔记。
+            </div>
           )}
         </aside>
 
         {selectedNote ? (
           <MarkdownPreview note={selectedNote} />
         ) : (
-          <section className="min-h-dvh bg-white p-6 text-sm text-slate-500 lg:p-8">
-            还没有可预览的笔记。
+          <section className="min-h-[45dvh] bg-white p-5 text-sm text-slate-500 sm:p-6 lg:min-h-dvh lg:p-8">
+            <div className="rounded-md border border-dashed border-slate-300 p-6">
+              还没有可预览的笔记。
+            </div>
           </section>
         )}
       </div>

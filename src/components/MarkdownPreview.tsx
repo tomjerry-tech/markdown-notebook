@@ -11,15 +11,15 @@ export function MarkdownPreview({ note }: MarkdownPreviewProps) {
   const hasContent = note.content.trim().length > 0
 
   return (
-    <section className="min-h-dvh bg-white p-6 lg:p-8">
-      <div className="flex items-center justify-between border-b border-slate-200 pb-4">
+    <section className="min-h-[45dvh] bg-white p-5 sm:p-6 lg:min-h-dvh lg:p-8">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-4">
         <div>
           <p className="text-sm font-medium text-slate-500">实时预览</p>
           <h2 className="mt-1 text-xl font-semibold text-slate-950">
             {note.title || '未命名笔记'}
           </h2>
         </div>
-        <span className="rounded-md bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">
+        <span className="rounded-md border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">
           Markdown
         </span>
       </div>
@@ -46,7 +46,7 @@ export function MarkdownPreview({ note }: MarkdownPreviewProps) {
                 <ol className="mb-5 list-decimal space-y-2 pl-6">{children}</ol>
               ),
               blockquote: ({ children }) => (
-                <blockquote className="mb-5 border-l-4 border-cyan-600 bg-cyan-50 px-4 py-3 text-slate-700">
+                <blockquote className="mb-5 rounded-r-md border-l-4 border-cyan-600 bg-cyan-50 px-4 py-3 text-slate-700">
                   {children}
                 </blockquote>
               ),
@@ -101,7 +101,7 @@ export function MarkdownPreview({ note }: MarkdownPreviewProps) {
           </ReactMarkdown>
         </article>
       ) : (
-        <div className="mx-auto mt-8 max-w-3xl rounded-md border border-dashed border-slate-300 p-6 text-sm text-slate-500">
+        <div className="mx-auto mt-8 max-w-3xl rounded-md border border-dashed border-slate-300 bg-slate-50 p-6 text-sm text-slate-500">
           当前笔记还没有内容，左侧输入 Markdown 后会在这里实时预览。
         </div>
       )}
