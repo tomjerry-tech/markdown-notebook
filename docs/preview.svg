@@ -1,0 +1,60 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" fill="#050505"/>
+  <rect x="40" y="40" width="1120" height="640" fill="#0B0B0B" stroke="#27272A" stroke-width="2"/>
+  <rect x="40" y="40" width="270" height="640" fill="#0B0C0C" stroke="#27272A" stroke-width="2"/>
+  <rect x="310" y="40" width="425" height="640" fill="#171717" stroke="#27272A" stroke-width="2"/>
+  <rect x="735" y="40" width="425" height="640" fill="#1D1D1D" stroke="#27272A" stroke-width="2"/>
+
+  <text x="70" y="90" fill="#00FF57" font-family="Consolas, monospace" font-size="24" font-weight="700">Markdown 笔记本</text>
+  <text x="70" y="120" fill="#71717A" font-family="Microsoft YaHei, sans-serif" font-size="16">左侧管理笔记，共 3 条</text>
+
+  <rect x="70" y="150" width="210" height="46" fill="#181818" stroke="#3F3F46"/>
+  <text x="90" y="180" fill="#A1A1AA" font-family="Microsoft YaHei, sans-serif" font-size="16">搜索笔记...</text>
+
+  <rect x="60" y="230" width="230" height="86" fill="#1B241D" stroke="#00FF57" stroke-width="2"/>
+  <text x="80" y="265" fill="#E4E4E7" font-family="Microsoft YaHei, sans-serif" font-size="18" font-weight="700">学习 Git 提交流程</text>
+  <text x="80" y="295" fill="#71717A" font-family="Consolas, monospace" font-size="14">2.4 KB · 07/02 20:50</text>
+
+  <rect x="60" y="335" width="230" height="86" fill="#111111" stroke="#27272A"/>
+  <text x="80" y="370" fill="#D4D4D8" font-family="Microsoft YaHei, sans-serif" font-size="18" font-weight="700">Markdown 语法</text>
+  <text x="80" y="400" fill="#71717A" font-family="Consolas, monospace" font-size="14">1.6 KB · 07/02 19:30</text>
+
+  <rect x="60" y="440" width="230" height="86" fill="#111111" stroke="#27272A"/>
+  <text x="80" y="475" fill="#D4D4D8" font-family="Microsoft YaHei, sans-serif" font-size="18" font-weight="700">项目开发计划</text>
+  <text x="80" y="505" fill="#71717A" font-family="Consolas, monospace" font-size="14">3.1 KB · 07/02 18:10</text>
+
+  <rect x="70" y="600" width="210" height="48" fill="#00FF57"/>
+  <text x="125" y="631" fill="#000000" font-family="Microsoft YaHei, sans-serif" font-size="18" font-weight="700">新建笔记</text>
+
+  <rect x="310" y="40" width="425" height="72" fill="#101010" stroke="#27272A"/>
+  <text x="340" y="85" fill="#F4F4F5" font-family="Microsoft YaHei, sans-serif" font-size="26" font-weight="700">学习 Git 提交流程</text>
+
+  <text x="340" y="155" fill="#00FF57" font-family="Consolas, monospace" font-size="20" font-weight="700"># 今天学到了什么</text>
+  <text x="340" y="200" fill="#D4D4D8" font-family="Microsoft YaHei, sans-serif" font-size="18">每次修改完成后，先查看状态：</text>
+  <rect x="340" y="230" width="350" height="140" fill="#090909" stroke="#27272A"/>
+  <text x="365" y="270" fill="#00FF57" font-family="Consolas, monospace" font-size="18">git status</text>
+  <text x="365" y="310" fill="#00FF57" font-family="Consolas, monospace" font-size="18">git add .</text>
+  <text x="365" y="350" fill="#00FF57" font-family="Consolas, monospace" font-size="18">git commit -m "完善文档"</text>
+  <text x="340" y="420" fill="#D4D4D8" font-family="Microsoft YaHei, sans-serif" font-size="18">最后推送到 GitHub：</text>
+  <text x="340" y="460" fill="#00FF57" font-family="Consolas, monospace" font-size="20" font-weight="700">git push</text>
+
+  <rect x="735" y="40" width="425" height="72" fill="#101010" stroke="#27272A"/>
+  <text x="765" y="84" fill="#71717A" font-family="Consolas, monospace" font-size="18" font-weight="700">实时预览</text>
+
+  <text x="765" y="155" fill="#00FF57" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="700">今天学到了什么</text>
+  <line x1="765" y1="180" x2="1110" y2="180" stroke="#3F3F46"/>
+  <text x="765" y="225" fill="#E4E4E7" font-family="Microsoft YaHei, sans-serif" font-size="18">每次修改完成后，先查看状态：</text>
+
+  <rect x="765" y="260" width="345" height="170" fill="#090909" stroke="#27272A"/>
+  <rect x="765" y="260" width="345" height="38" fill="#111111" stroke="#27272A"/>
+  <text x="785" y="286" fill="#00FF57" font-family="Consolas, monospace" font-size="14" font-weight="700">powershell</text>
+  <text x="790" y="330" fill="#A7F3D0" font-family="Consolas, monospace" font-size="18">git status</text>
+  <text x="790" y="370" fill="#A7F3D0" font-family="Consolas, monospace" font-size="18">git add .</text>
+  <text x="790" y="410" fill="#A7F3D0" font-family="Consolas, monospace" font-size="18">git commit -m "完善文档"</text>
+
+  <rect x="765" y="475" width="345" height="70" fill="#112017" stroke="#00FF57"/>
+  <text x="790" y="518" fill="#E4E4E7" font-family="Microsoft YaHei, sans-serif" font-size="18">写笔记时，右侧会同步显示排版效果。</text>
+
+  <circle cx="1115" cy="625" r="18" fill="#00FF57"/>
+  <text x="1105" y="632" fill="#000000" font-family="Consolas, monospace" font-size="20" font-weight="700">✓</text>
+</svg>
