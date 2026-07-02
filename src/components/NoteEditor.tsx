@@ -27,13 +27,14 @@ export function NoteEditor({ note }: NoteEditorProps) {
           className="mt-2 min-h-80 flex-1 resize-none rounded-md border border-slate-300 bg-white px-3 py-3 font-mono text-sm leading-6 outline-none transition focus:border-cyan-600 focus:ring-2 focus:ring-cyan-100"
           defaultValue={note.content}
           id="note-content"
+          placeholder="输入 Markdown 内容"
           spellCheck={false}
         />
       </div>
 
       <button
-        type="button"
         className="min-h-11 rounded-md border border-red-200 px-4 text-sm font-medium text-red-700 transition hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2"
+        type="button"
       >
         删除当前笔记
       </button>

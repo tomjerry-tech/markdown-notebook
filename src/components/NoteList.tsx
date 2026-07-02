@@ -2,7 +2,9 @@ import type { Note } from '../types/note'
 
 type NoteListProps = {
   notes: Note[]
-  selectedNoteId: string
+  selectedNoteId?: string
+  onCreateNote: () => void
+  onSelectNote: (noteId: string) => void
 }
 
 const dateFormatter = new Intl.DateTimeFormat('zh-CN', {
@@ -12,7 +14,12 @@ const dateFormatter = new Intl.DateTimeFormat('zh-CN', {
   minute: '2-digit',
 })
 
-export function NoteList({ notes, selectedNoteId }: NoteListProps) {
+export function NoteList({
+  notes,
+  selectedNoteId,
+  onCreateNote,
+  onSelectNote,
+}: NoteListProps) {
   return (
     <section className="border-b border-slate-200 p-5">
       <div className="flex items-start justify-between gap-4">
@@ -24,8 +31,9 @@ export function NoteList({ notes, selectedNoteId }: NoteListProps) {
         </div>
 
         <button
-          type="button"
           className="min-h-11 rounded-md bg-slate-950 px-4 text-sm font-medium text-white transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2"
+          onClick={onCreateNote}
+          type="button"
         >
           新建
         </button>
@@ -47,7 +55,7 @@ export function NoteList({ notes, selectedNoteId }: NoteListProps) {
 
           return (
             <button
-              type="button"
+              aria-pressed={isSelected}
               className={[
                 'w-full rounded-md border p-3 text-left transition focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2',
                 isSelected
@@ -55,12 +63,14 @@ export function NoteList({ notes, selectedNoteId }: NoteListProps) {
                   : 'border-slate-200 bg-white hover:border-slate-300',
               ].join(' ')}
               key={note.id}
+              onClick={() => onSelectNote(note.id)}
+              type="button"
             >
               <span className="block truncate text-sm font-semibold text-slate-950">
                 {note.title}
               </span>
               <span className="mt-1 block truncate text-xs text-slate-500">
-                {note.content}
+                {note.content || '空白笔记'}
               </span>
               <span className="mt-3 block text-xs text-slate-400">
                 {dateFormatter.format(new Date(note.updatedAt))}

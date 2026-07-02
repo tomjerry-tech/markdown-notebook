@@ -18,19 +18,23 @@ export function MarkdownPreview({ note }: MarkdownPreviewProps) {
       </div>
 
       <article className="mx-auto mt-8 max-w-3xl text-slate-800">
-        <h1 className="text-3xl font-semibold text-slate-950">Markdown 笔记应用</h1>
-        <p className="mt-4 leading-7">
-          右侧区域用于展示 Markdown 渲染后的效果。后续会接入 react-markdown，
-          让这里跟随左侧编辑器实时更新。
-        </p>
+        <h1 className="text-3xl font-semibold text-slate-950">
+          {note.title || '未命名笔记'}
+        </h1>
+
+        {note.content ? (
+          <pre className="mt-6 whitespace-pre-wrap rounded-md border border-slate-200 bg-slate-50 p-4 font-mono text-sm leading-6 text-slate-700">
+            {note.content}
+          </pre>
+        ) : (
+          <div className="mt-6 rounded-md border border-dashed border-slate-300 p-6 text-sm text-slate-500">
+            当前笔记还没有内容。
+          </div>
+        )}
 
         <blockquote className="mt-6 border-l-4 border-cyan-600 bg-cyan-50 px-4 py-3 text-sm leading-6 text-slate-700">
-          当前阶段先完成页面布局，下一步再接入笔记状态管理。
+          当前阶段已经接入 React state，可以新建笔记并切换当前选中的笔记。
         </blockquote>
-
-        <pre className="mt-6 overflow-x-auto rounded-md bg-slate-950 p-4 text-sm text-slate-100">
-          <code>{'const app = "Markdown Notebook";'}</code>
-        </pre>
       </article>
     </section>
   )
