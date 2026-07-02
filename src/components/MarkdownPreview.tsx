@@ -1,4 +1,6 @@
 import ReactMarkdown from 'react-markdown'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import type { Note } from '../types/note'
 
 type MarkdownPreviewProps = {
@@ -48,16 +50,41 @@ export function MarkdownPreview({ note }: MarkdownPreviewProps) {
                   {children}
                 </blockquote>
               ),
-              code: ({ children }) => (
-                <code className="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-sm text-slate-900">
-                  {children}
-                </code>
-              ),
-              pre: ({ children }) => (
-                <pre className="mb-5 overflow-x-auto rounded-md bg-slate-950 p-4 text-sm leading-6 text-slate-100">
-                  {children}
-                </pre>
-              ),
+              code: ({ children, className }) => {
+                const language = /language-(\w+)/.exec(className ?? '')?.[1]
+                const code = String(children).replace(/\n$/, '')
+
+                if (language) {
+                  return (
+                    <div className="mb-5 overflow-hidden rounded-md border border-slate-800 bg-slate-950">
+                      <div className="flex items-center justify-between border-b border-white/10 px-4 py-2">
+                        <span className="text-xs font-medium uppercase text-slate-400">
+                          {language}
+                        </span>
+                        <span className="text-xs text-slate-500">code</span>
+                      </div>
+                      <SyntaxHighlighter
+                        customStyle={{
+                          background: 'transparent',
+                          margin: 0,
+                          padding: '1rem',
+                        }}
+                        language={language}
+                        PreTag="div"
+                        style={oneDark}
+                      >
+                        {code}
+                      </SyntaxHighlighter>
+                    </div>
+                  )
+                }
+
+                return (
+                  <code className="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-sm text-slate-900">
+                    {children}
+                  </code>
+                )
+              },
               a: ({ children, href }) => (
                 <a
                   className="font-medium text-cyan-700 underline underline-offset-4"
