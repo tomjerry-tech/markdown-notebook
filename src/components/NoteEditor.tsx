@@ -3,9 +3,10 @@ import type { Note } from '../types/note'
 type NoteEditorProps = {
   note: Note
   onUpdateNote: (noteId: string, updates: Pick<Note, 'title' | 'content'>) => void
+  onDeleteNote: (noteId: string) => void
 }
 
-export function NoteEditor({ note, onUpdateNote }: NoteEditorProps) {
+export function NoteEditor({ note, onUpdateNote, onDeleteNote }: NoteEditorProps) {
   function handleTitleChange(title: string) {
     onUpdateNote(note.id, {
       title,
@@ -55,6 +56,7 @@ export function NoteEditor({ note, onUpdateNote }: NoteEditorProps) {
 
       <button
         className="min-h-11 rounded-md border border-red-200 px-4 text-sm font-medium text-red-700 transition hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2"
+        onClick={() => onDeleteNote(note.id)}
         type="button"
       >
         删除当前笔记

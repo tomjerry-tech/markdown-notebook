@@ -3,7 +3,10 @@ import type { Note } from '../types/note'
 type NoteListProps = {
   notes: Note[]
   selectedNoteId?: string
+  searchQuery: string
+  totalNoteCount: number
   onCreateNote: () => void
+  onSearchQueryChange: (query: string) => void
   onSelectNote: (noteId: string) => void
 }
 
@@ -17,9 +20,14 @@ const dateFormatter = new Intl.DateTimeFormat('zh-CN', {
 export function NoteList({
   notes,
   selectedNoteId,
+  searchQuery,
+  totalNoteCount,
   onCreateNote,
+  onSearchQueryChange,
   onSelectNote,
 }: NoteListProps) {
+  const isSearching = searchQuery.trim().length > 0
+
   return (
     <section className="border-b border-slate-200 p-5">
       <div className="flex items-start justify-between gap-4">
@@ -28,6 +36,7 @@ export function NoteList({
             Markdown Notebook
           </p>
           <h1 className="mt-1 text-2xl font-semibold text-slate-950">我的笔记</h1>
+          <p className="mt-1 text-xs text-slate-500">共 {totalNoteCount} 条笔记</p>
         </div>
 
         <button
@@ -45,8 +54,10 @@ export function NoteList({
       <input
         className="mt-2 h-11 w-full rounded-md border border-slate-300 bg-white px-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-100"
         id="note-search"
+        onChange={(event) => onSearchQueryChange(event.target.value)}
         placeholder="输入标题或内容关键词"
         type="search"
+        value={searchQuery}
       />
 
       <div className="mt-5 space-y-2" aria-label="笔记列表">
@@ -67,7 +78,7 @@ export function NoteList({
               type="button"
             >
               <span className="block truncate text-sm font-semibold text-slate-950">
-                {note.title}
+                {note.title || '未命名笔记'}
               </span>
               <span className="mt-1 block truncate text-xs text-slate-500">
                 {note.content || '空白笔记'}
@@ -78,6 +89,12 @@ export function NoteList({
             </button>
           )
         })}
+
+        {notes.length === 0 ? (
+          <div className="rounded-md border border-dashed border-slate-300 bg-white p-4 text-sm text-slate-500">
+            {isSearching ? '没有找到匹配的笔记。' : '还没有笔记，点击“新建”开始。'}
+          </div>
+        ) : null}
       </div>
     </section>
   )
