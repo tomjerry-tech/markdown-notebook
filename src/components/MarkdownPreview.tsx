@@ -11,42 +11,40 @@ export function MarkdownPreview({ note }: MarkdownPreviewProps) {
   const hasContent = note.content.trim().length > 0
 
   return (
-    <section className="min-h-[45dvh] bg-white p-5 sm:p-6 lg:min-h-dvh lg:p-8">
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-4">
-        <div>
-          <p className="text-sm font-medium text-slate-500">实时预览</p>
-          <h2 className="mt-1 text-xl font-semibold text-slate-950">
-            {note.title || '未命名笔记'}
-          </h2>
-        </div>
-        <span className="rounded-md border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">
-          Markdown
-        </span>
-      </div>
+    <section className="min-h-[52dvh] bg-[#1d1d1d] lg:min-h-full">
+      <header className="border-b border-zinc-800 bg-[#101010] px-5 py-4">
+        <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-zinc-500">
+          Preview
+        </p>
+      </header>
 
       {hasContent ? (
-        <article className="mx-auto mt-8 max-w-3xl text-slate-800">
+        <article className="mx-auto max-w-3xl px-6 py-8 font-mono text-zinc-300 sm:px-8">
           <ReactMarkdown
             components={{
               h1: ({ children }) => (
-                <h1 className="mb-5 text-3xl font-semibold text-slate-950">
+                <h1 className="mb-6 border-b border-zinc-700 pb-5 text-3xl font-black text-[#00ff57]">
                   {children}
                 </h1>
               ),
               h2: ({ children }) => (
-                <h2 className="mb-4 mt-8 text-2xl font-semibold text-slate-950">
+                <h2 className="mb-4 mt-8 text-2xl font-black text-[#00ff57]">
                   {children}
                 </h2>
               ),
-              p: ({ children }) => <p className="mb-4 leading-7">{children}</p>,
+              h3: ({ children }) => (
+                <h3 className="mb-3 mt-6 text-xl font-black text-zinc-100">{children}</h3>
+              ),
+              p: ({ children }) => <p className="mb-5 leading-8 text-zinc-300">{children}</p>,
               ul: ({ children }) => (
-                <ul className="mb-5 list-disc space-y-2 pl-6">{children}</ul>
+                <ul className="mb-6 list-disc space-y-3 pl-7 leading-7">{children}</ul>
               ),
               ol: ({ children }) => (
-                <ol className="mb-5 list-decimal space-y-2 pl-6">{children}</ol>
+                <ol className="mb-6 list-decimal space-y-3 pl-7 leading-7">{children}</ol>
               ),
+              strong: ({ children }) => <strong className="font-black text-zinc-100">{children}</strong>,
               blockquote: ({ children }) => (
-                <blockquote className="mb-5 rounded-r-md border-l-4 border-cyan-600 bg-cyan-50 px-4 py-3 text-slate-700">
+                <blockquote className="mb-6 border-l-4 border-[#00ff57] bg-[#112017] px-4 py-3 text-zinc-200">
                   {children}
                 </blockquote>
               ),
@@ -56,12 +54,12 @@ export function MarkdownPreview({ note }: MarkdownPreviewProps) {
 
                 if (language) {
                   return (
-                    <div className="mb-5 overflow-hidden rounded-md border border-slate-800 bg-slate-950">
-                      <div className="flex items-center justify-between border-b border-white/10 px-4 py-2">
-                        <span className="text-xs font-medium uppercase text-slate-400">
+                    <div className="mb-6 overflow-hidden border border-zinc-800 bg-[#090909]">
+                      <div className="flex items-center justify-between border-b border-zinc-800 px-4 py-2">
+                        <span className="text-xs font-black uppercase text-[#00ff57]">
                           {language}
                         </span>
-                        <span className="text-xs text-slate-500">code</span>
+                        <span className="text-xs text-zinc-600">code</span>
                       </div>
                       <SyntaxHighlighter
                         customStyle={{
@@ -80,14 +78,14 @@ export function MarkdownPreview({ note }: MarkdownPreviewProps) {
                 }
 
                 return (
-                  <code className="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-sm text-slate-900">
+                  <code className="bg-[#111] px-1.5 py-0.5 text-sm text-[#00ff57]">
                     {children}
                   </code>
                 )
               },
               a: ({ children, href }) => (
                 <a
-                  className="font-medium text-cyan-700 underline underline-offset-4"
+                  className="font-bold text-[#00ff57] underline underline-offset-4"
                   href={href}
                   rel="noreferrer"
                   target="_blank"
@@ -101,7 +99,7 @@ export function MarkdownPreview({ note }: MarkdownPreviewProps) {
           </ReactMarkdown>
         </article>
       ) : (
-        <div className="mx-auto mt-8 max-w-3xl rounded-md border border-dashed border-slate-300 bg-slate-50 p-6 text-sm text-slate-500">
+        <div className="m-6 border border-dashed border-zinc-800 bg-[#151515] p-6 font-mono text-sm text-zinc-500">
           当前笔记还没有内容，左侧输入 Markdown 后会在这里实时预览。
         </div>
       )}

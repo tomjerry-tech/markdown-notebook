@@ -22,45 +22,38 @@ export function NoteEditor({ note, onUpdateNote, onDeleteNote }: NoteEditorProps
   }
 
   return (
-    <section className="flex min-h-0 flex-1 flex-col gap-4 p-4 sm:p-5">
-      <div>
-        <label className="block text-sm font-medium text-slate-700" htmlFor="note-title">
-          标题
-        </label>
+    <section className="flex min-h-[52dvh] flex-col border-b border-zinc-800 bg-[#171717] lg:min-h-full lg:border-b-0 lg:border-r">
+      <header className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-800 bg-[#101010] px-5 py-4">
         <input
-          className="mt-2 h-11 w-full rounded-md border border-slate-300 bg-white px-3 text-sm outline-none transition hover:border-slate-400 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-100"
-          id="note-title"
+          aria-label="笔记标题"
+          className="min-w-0 flex-1 bg-transparent font-mono text-xl font-black text-zinc-200 outline-none placeholder:text-zinc-600 focus:text-[#00ff57]"
           onChange={(event) => handleTitleChange(event.target.value)}
+          placeholder="未命名笔记"
           type="text"
           value={note.title}
         />
-      </div>
+        <button
+          className="min-h-9 border border-zinc-800 px-4 font-mono text-xs font-bold text-zinc-300 transition hover:border-red-500 hover:text-red-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-black"
+          onClick={() => onDeleteNote(note.id)}
+          type="button"
+        >
+          删除
+        </button>
+      </header>
 
-      <div className="flex min-h-0 flex-1 flex-col">
-        <label className="block text-sm font-medium text-slate-700" htmlFor="note-content">
-          Markdown 内容
-        </label>
-        <textarea
-          className="mt-2 min-h-80 flex-1 resize-none rounded-md border border-slate-300 bg-white px-3 py-3 font-mono text-sm leading-6 outline-none transition hover:border-slate-400 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-100"
-          id="note-content"
-          onChange={(event) => handleContentChange(event.target.value)}
-          placeholder="输入 Markdown 内容"
-          spellCheck={false}
-          value={note.content}
-        />
-      </div>
+      <textarea
+        aria-label="Markdown 内容"
+        className="min-h-[420px] flex-1 resize-none bg-[#1b1b1b] px-5 py-6 font-mono text-sm leading-7 text-zinc-300 outline-none placeholder:text-zinc-600 focus:bg-[#1d1d1d] lg:min-h-0"
+        onChange={(event) => handleContentChange(event.target.value)}
+        placeholder="输入 Markdown 内容..."
+        spellCheck={false}
+        value={note.content}
+      />
 
-      <div className="rounded-md border border-emerald-200 bg-emerald-50 px-3 py-2 text-xs font-medium text-emerald-700">
-        已自动保存到浏览器
-      </div>
-
-      <button
-        className="min-h-11 rounded-md border border-red-200 bg-white px-4 text-sm font-medium text-red-700 transition hover:border-red-300 hover:bg-red-50 active:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2"
-        onClick={() => onDeleteNote(note.id)}
-        type="button"
-      >
-        删除当前笔记
-      </button>
+      <footer className="flex items-center justify-between border-t border-zinc-800 bg-[#101010] px-5 py-3 font-mono text-xs text-zinc-500">
+        <span>UTF-8 · Markdown</span>
+        <span>已保存</span>
+      </footer>
     </section>
   )
 }
