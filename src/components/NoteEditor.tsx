@@ -2,9 +2,24 @@ import type { Note } from '../types/note'
 
 type NoteEditorProps = {
   note: Note
+  onUpdateNote: (noteId: string, updates: Pick<Note, 'title' | 'content'>) => void
 }
 
-export function NoteEditor({ note }: NoteEditorProps) {
+export function NoteEditor({ note, onUpdateNote }: NoteEditorProps) {
+  function handleTitleChange(title: string) {
+    onUpdateNote(note.id, {
+      title,
+      content: note.content,
+    })
+  }
+
+  function handleContentChange(content: string) {
+    onUpdateNote(note.id, {
+      title: note.title,
+      content,
+    })
+  }
+
   return (
     <section className="flex min-h-0 flex-1 flex-col gap-4 p-5">
       <div>
@@ -13,9 +28,10 @@ export function NoteEditor({ note }: NoteEditorProps) {
         </label>
         <input
           className="mt-2 h-11 w-full rounded-md border border-slate-300 bg-white px-3 text-sm outline-none transition focus:border-cyan-600 focus:ring-2 focus:ring-cyan-100"
-          defaultValue={note.title}
           id="note-title"
+          onChange={(event) => handleTitleChange(event.target.value)}
           type="text"
+          value={note.title}
         />
       </div>
 
@@ -25,11 +41,16 @@ export function NoteEditor({ note }: NoteEditorProps) {
         </label>
         <textarea
           className="mt-2 min-h-80 flex-1 resize-none rounded-md border border-slate-300 bg-white px-3 py-3 font-mono text-sm leading-6 outline-none transition focus:border-cyan-600 focus:ring-2 focus:ring-cyan-100"
-          defaultValue={note.content}
           id="note-content"
+          onChange={(event) => handleContentChange(event.target.value)}
           placeholder="输入 Markdown 内容"
           spellCheck={false}
+          value={note.content}
         />
+      </div>
+
+      <div className="rounded-md bg-emerald-50 px-3 py-2 text-xs font-medium text-emerald-700">
+        已自动保存到浏览器
       </div>
 
       <button
